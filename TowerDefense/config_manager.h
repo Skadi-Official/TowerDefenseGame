@@ -268,7 +268,7 @@ private:
 
 	void parse_number_array(double* ary, int max_len, cJSON* json_root)
 	{
-		if (json_root || json_root->type != cJSON_Array)
+		if (json_root == NULL || json_root->type != cJSON_Array)
 			return;
 
 		int idx = -1;
