@@ -65,5 +65,11 @@
     <ClInclude Include="animation.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="vector2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>头文件\enemy</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

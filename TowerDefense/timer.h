@@ -59,7 +59,7 @@ public:
 private:
 	double pass_time = 0;	// 从计时开始过去了多少时间
 	double wait_time = 0;	// 触发定时器功能所需等待的时间
-	bool paused = false;		// 暂停定时器
+	bool paused = false;	// 暂停定时器
 	bool shotted = false;	// 定时器是否触发过
 	bool one_shot = false;	// 定时器是否只触发一次
 	std::function<void()> on_timeout;	
