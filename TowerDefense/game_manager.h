@@ -133,7 +133,7 @@ private:
 		const Map& map = ConfigManager::instance()->map;
 		const TileMap& tile_map = map.get_tile_map();
 		SDL_Rect& rect_tile_map = ConfigManager::instance()->rect_tile_map;
-		SDL_Texture* tex_tile_set = ResourcesManager::instance()->get_Texture_pool().find(ResID::Tex_Tileset)->second;
+		SDL_Texture* tex_tile_set = ResourcesManager::instance()->get_texture_pool().find(ResID::Tex_Tileset)->second;
 
 		int width_tex_tile_set, height_tex_tile_set; // 整个纹理的宽高
 		SDL_QueryTexture(tex_tile_set, nullptr, nullptr, &width_tex_tile_set, &height_tex_tile_set);
@@ -196,7 +196,7 @@ private:
 			idx_home.x * SIZE_TILE, idx_home.y * SIZE_TILE,
 			SIZE_TILE, SIZE_TILE
 		};
-		SDL_RenderCopy(renderer, ResourcesManager::instance()->get_Texture_pool().find(ResID::Tex_Home)->second, nullptr, &rect_dst);
+		SDL_RenderCopy(renderer, ResourcesManager::instance()->get_texture_pool().find(ResID::Tex_Home)->second, nullptr, &rect_dst);
 
 		SDL_SetRenderTarget(renderer, nullptr);
 

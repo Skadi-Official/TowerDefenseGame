@@ -71,5 +71,8 @@
     <ClInclude Include="enemy.h">
       <Filter>头文件\enemy</Filter>
     </ClInclude>
+    <ClInclude Include="slim_enemy.h">
+      <Filter>头文件\enemy</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

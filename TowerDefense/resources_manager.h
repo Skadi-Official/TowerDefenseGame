@@ -211,7 +211,7 @@ public:
 		return music_pool;
 	}
 
-	const TexturePool& get_Texture_pool()
+	const TexturePool& get_texture_pool()
 	{
 		return texture_pool;
 	}

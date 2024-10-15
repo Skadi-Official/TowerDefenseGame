@@ -144,6 +144,7 @@
     <ClInclude Include="map.h" />
     <ClInclude Include="resources_manager.h" />
     <ClInclude Include="route.h" />
+    <ClInclude Include="slim_enemy.h" />
     <ClInclude Include="tile.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="vector2.h" />
