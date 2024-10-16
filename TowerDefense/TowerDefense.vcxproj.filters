@@ -74,5 +74,17 @@
     <ClInclude Include="slim_enemy.h">
       <Filter>头文件\enemy</Filter>
     </ClInclude>
+    <ClInclude Include="skeleton_enemy.h">
+      <Filter>头文件\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="goblin_enemy.h">
+      <Filter>头文件\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="king_slim_enemy.h">
+      <Filter>头文件\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="goblin_priest_enemy.h">
+      <Filter>头文件\enemy</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
