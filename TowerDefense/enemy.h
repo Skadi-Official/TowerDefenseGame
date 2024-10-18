@@ -162,6 +162,11 @@ public:
 		return hp;
 	}
 
+	double get_damage() const
+	{
+		return damage;
+	}
+
 	const Vector2& get_size() const
 	{
 		return size;
