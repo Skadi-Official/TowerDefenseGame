@@ -1,6 +1,8 @@
 #ifndef _VECTOR2_H_
 #define _VECTOR2_H_
-#include<math.h>
+
+#include <cmath>
+
 class Vector2
 {
 public:
@@ -12,7 +14,7 @@ public:
 	~Vector2() = default;
 
 	Vector2(double x, double y)
-		:x(x), y(y){ }
+		: x(x), y(y) { }
 
 	Vector2 operator+(const Vector2& vec) const
 	{
@@ -34,7 +36,7 @@ public:
 		x -= vec.x, y -= vec.y;
 	}
 
-	double operator* (const Vector2& vec) const
+	double operator*(const Vector2& vec) const
 	{
 		return x * vec.x + y * vec.y;
 	}
@@ -66,25 +68,25 @@ public:
 
 	double length() const
 	{
-		return sqrt(x * x + y + y);
+		return sqrt(x * x + y * y);
 	}
 
 	Vector2 normalize() const
 	{
 		double len = length();
+
 		if (len == 0)
-		{
 			return Vector2(0, 0);
-		}
+
 		return Vector2(x / len, y / len);
 	}
 
 	bool approx_zero() const
 	{
-		return length() < 0.0000001;
+		return length() < 0.0001;
 	}
-private:
 
 };
+
 
 #endif // !_VECTOR2_H_

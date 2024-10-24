@@ -50,6 +50,7 @@ public:
 
 		velocity.x = direction.x * speed * SIZE_TILE;
 		velocity.y = direction.y * speed * SIZE_TILE;
+		
 
 		// 怪物的动画更新
 		bool is_show_x_anim = abs(velocity.x) >= abs(velocity.y);
