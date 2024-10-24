@@ -19,7 +19,7 @@ class ConfigManager : public Manager<ConfigManager>
 public:
 	struct BasicTemplate
 	{
-		std::string window_title = u8"村庄保卫战";
+		std::string window_title = u8"村庄保卫战！";
 		int window_width = 1280;
 		int window_height = 720;
 	};
@@ -57,9 +57,9 @@ public:
 	Map map;
 	std::vector<Wave> wave_list;
 
-	int level_archer = 0;	// 弓箭防御塔等级
-	int level_axeman = 0;	// 斧头防御塔等级
-	int level_gunner = 0;	// 枪手防御塔等级
+	int level_archer = 0;
+	int level_axeman = 0;
+	int level_gunner = 0;
 
 	bool is_game_win = true;
 	bool is_game_over = false;
@@ -80,7 +80,7 @@ public:
 	EnemyTemplate goblin_priest_template;
 
 	const double num_initial_hp = 10;
-	const double num_initial_money = 10;
+	const double num_initial_coin = 100;
 	const double num_coin_per_prop = 10;
 
 public:
@@ -91,8 +91,7 @@ public:
 		if (!file.good()) return false;
 
 		std::stringstream str_stream;
-		str_stream << file.rdbuf();
-		file.close();
+		str_stream << file.rdbuf(); file.close();
 
 		cJSON* json_root = cJSON_Parse(str_stream.str().c_str());
 		if (!json_root) return false;
@@ -112,18 +111,16 @@ public:
 			wave_list.emplace_back();
 			Wave& wave = wave_list.back();
 
-			cJSON* json_wave_rewards = cJSON_GetObjectItem(json_wave, "rewards");	// 波次奖励
+			cJSON* json_wave_rewards = cJSON_GetObjectItem(json_wave, "rewards");
 			if (json_wave_rewards && json_wave_rewards->type == cJSON_Number)
 				wave.rewards = json_wave_rewards->valuedouble;
-			
-			cJSON* json_wave_interval = cJSON_GetObjectItem(json_wave, "interval");	// 波次间隔
+			cJSON* json_wave_interval = cJSON_GetObjectItem(json_wave, "interval");
 			if (json_wave_interval && json_wave_interval->type == cJSON_Number)
 				wave.interval = json_wave_interval->valuedouble;
-
-			cJSON* json_wave_spawn_list = cJSON_GetObjectItem(json_wave, "spawn_list");	//波次内刷怪表
+			cJSON* json_wave_spawn_list = cJSON_GetObjectItem(json_wave, "spawn_list");
 			if (json_wave_spawn_list && json_wave_spawn_list->type == cJSON_Array)
 			{
-				cJSON* json_spawn_event = nullptr;	//刷怪表内具体刷怪事件
+				cJSON* json_spawn_event = nullptr;
 				cJSON_ArrayForEach(json_spawn_event, json_wave_spawn_list)
 				{
 					if (json_spawn_event->type != cJSON_Object)
@@ -135,11 +132,9 @@ public:
 					cJSON* json_spawn_event_interval = cJSON_GetObjectItem(json_spawn_event, "interval");
 					if (json_spawn_event_interval && json_spawn_event_interval->type == cJSON_Number)
 						spawn_event.interval = json_spawn_event_interval->valuedouble;
-
 					cJSON* json_spawn_event_spawn_point = cJSON_GetObjectItem(json_spawn_event, "point");
 					if (json_spawn_event_spawn_point && json_spawn_event_spawn_point->type == cJSON_Number)
 						spawn_event.spawn_point = json_spawn_event_spawn_point->valueint;
-
 					cJSON* json_spawn_event_enemy_type = cJSON_GetObjectItem(json_spawn_event, "enemy");
 					if (json_spawn_event_enemy_type && json_spawn_event_enemy_type->type == cJSON_String)
 					{
@@ -160,7 +155,6 @@ public:
 				if (wave.spawn_event_list.empty())
 					wave_list.pop_back();
 			}
-
 		}
 
 		cJSON_Delete(json_root);
@@ -177,8 +171,7 @@ public:
 		if (!file.good()) return false;
 
 		std::stringstream str_stream;
-		str_stream << file.rdbuf();
-		file.close();
+		str_stream << file.rdbuf(); file.close();
 
 		cJSON* json_root = cJSON_Parse(str_stream.str().c_str());
 		if (!json_root || json_root->type != cJSON_Object) return false;
@@ -216,7 +209,6 @@ public:
 		return true;
 	}
 
-
 protected:
 	ConfigManager() = default;
 	~ConfigManager() = default;
@@ -245,8 +237,8 @@ private:
 		cJSON* json_speed = cJSON_GetObjectItem(json_root, "speed");
 		cJSON* json_normal_attack_interval = cJSON_GetObjectItem(json_root, "normal_attack_interval");
 		cJSON* json_normal_attack_damage = cJSON_GetObjectItem(json_root, "normal_attack_damage");
-		cJSON* skill_interval = cJSON_GetObjectItem(json_root, "skill_interval");
-		cJSON* skill_damage = cJSON_GetObjectItem(json_root, "skill_damage");
+		cJSON* json_skill_interval = cJSON_GetObjectItem(json_root, "skill_interval");
+		cJSON* json_skill_damage = cJSON_GetObjectItem(json_root, "skill_damage");
 
 		if (json_speed && json_speed->type == cJSON_Number)
 			tpl.speed = json_speed->valuedouble;
@@ -254,21 +246,15 @@ private:
 			tpl.normal_attack_interval = json_normal_attack_interval->valuedouble;
 		if (json_normal_attack_damage && json_normal_attack_damage->type == cJSON_Number)
 			tpl.normal_attack_damage = json_normal_attack_damage->valuedouble;
-		if (skill_interval && skill_interval->type == cJSON_Number)
-			tpl.skill_interval = skill_interval->valuedouble;
-		if (skill_damage && skill_damage->type == cJSON_Number)
-			tpl.skill_damage = skill_damage->valuedouble;
+		if (json_skill_interval && json_skill_interval->type == cJSON_Number)
+			tpl.skill_interval = json_skill_interval->valuedouble;
+		if (json_skill_damage && json_skill_damage->type == cJSON_Number)
+			tpl.skill_damage = json_skill_damage->valuedouble;
 	}
-
-	/*
-	在 C/C++ 中，数组作为函数参数时，double ary[] 和 double* ary 实际上是等价的。
-	它们都表示传递给函数的参数是一个指向 double 类型的指针。
-	原因在于数组在函数参数中会退化为指针，所以两种写法本质上没有区别。
-	*/
 
 	void parse_number_array(double* ary, int max_len, cJSON* json_root)
 	{
-		if (json_root == NULL || json_root->type != cJSON_Array)
+		if (!json_root || json_root->type != cJSON_Array)
 			return;
 
 		int idx = -1;
@@ -321,14 +307,14 @@ private:
 		if (json_reward_ratio && json_reward_ratio->type == cJSON_Number)
 			tpl.reward_ratio = json_reward_ratio->valuedouble;
 		if (json_recover_interval && json_recover_interval->type == cJSON_Number)
-			tpl.reward_ratio = json_recover_interval->valuedouble;
+			tpl.recover_interval = json_recover_interval->valuedouble;
 		if (json_recover_range && json_recover_range->type == cJSON_Number)
 			tpl.recover_range = json_recover_range->valuedouble;
 		if (json_recover_intensity && json_recover_intensity->type == cJSON_Number)
 			tpl.recover_intensity = json_recover_intensity->valuedouble;
 	}
-};
 
+};
 
 
 #endif // !_CONFIG_MANAGER_H_

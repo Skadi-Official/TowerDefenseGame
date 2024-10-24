@@ -85,11 +85,11 @@ public:
 		static SDL_Point point;
 		static const int offset_y = 2;
 		static const Vector2 size_hp_bar = { 40, 8 };
-		static const SDL_Color color_border = { 166, 185, 124, 255 };	//边框颜色
+		static const SDL_Color color_border = { 116, 185, 124, 255 };	//边框颜色
 		static const SDL_Color color_content = { 226,255,194,255 };		//内部填充色
 		//position表示中心位置，绘制需要左上角顶点位置，需要转换
-		point.x = (int)(position.x - size.x) / 2;
-		point.y = (int)(position.y - size.y) / 2;
+		point.x = (int)(position.x - size.x / 2);
+		point.y = (int)(position.y - size.y / 2);
 		anim_current->on_render(renderer, point);
 
 		if (hp < max_hp)	//生命不满时绘制血条

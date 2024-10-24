@@ -13,13 +13,7 @@
 class Map
 {
 public:
-	typedef std::unordered_map<int, Route> SpawnerRoutePool; //刷怪点池
-	
-	/*{
-    key: int,          // 整数类型键
-    value: Route       // Route 对象作为值
-	}*/
-	
+	typedef std::unordered_map<int, Route> SpawnerRoutePool;
 
 public:
 	Map() = default;
@@ -32,16 +26,14 @@ public:
 
 		TileMap tile_map_temp;
 
-		int idx_x = -1, idx_y = -1; // 当前读取的索引
+		int idx_x = -1, idx_y = -1;
 
 		std::string str_line;
 		while (std::getline(file, str_line))
 		{
 			str_line = trim_str(str_line);
 			if (str_line.empty())
-			{
 				continue;
-			}
 
 			idx_x = -1, idx_y++;
 			tile_map_temp.emplace_back();
@@ -60,9 +52,7 @@ public:
 		file.close();
 
 		if (tile_map_temp.empty() || tile_map_temp[0].empty())
-		{
 			return false;
-		}
 
 		tile_map = tile_map_temp;
 
@@ -71,13 +61,10 @@ public:
 		return true;
 	}
 
-public:
 	size_t get_width() const
 	{
 		if (tile_map.empty())
-		{
 			return 0;
-		}
 
 		return tile_map[0].size();
 	}
@@ -99,29 +86,25 @@ public:
 
 	const SpawnerRoutePool& get_idx_spawner_pool() const
 	{
-		return spawner_route_pool;
+		return spwaner_route_pool;
 	}
 
 	void place_tower(const SDL_Point& idx_tile)
 	{
-		// 放置防御塔
 		tile_map[idx_tile.y][idx_tile.x].has_tower = true;
 	}
 
 private:
 	TileMap tile_map;
-	SDL_Point idx_home = { 0 }; // 防守位点的索引位置
-	SpawnerRoutePool spawner_route_pool;
+	SDL_Point idx_home = { 0 };
+	SpawnerRoutePool spwaner_route_pool;
 
 private:
 	std::string trim_str(const std::string& str)
 	{
-		// 清除字符串中所有的空格和换行符
 		size_t begin_idx = str.find_first_not_of(" \t");
 		if (begin_idx == std::string::npos)
-		{
 			return "";
-		}
 		size_t end_idx = str.find_last_not_of(" \t");
 		size_t idx_range = end_idx - begin_idx + 1;
 
@@ -130,7 +113,6 @@ private:
 
 	void load_tile_from_string(Tile& tile, const std::string& str)
 	{
-		// 从字符串中读取数据到 tile 中
 		std::string str_tidy = trim_str(str);
 
 		std::string str_value;
@@ -174,11 +156,12 @@ private:
 				}
 				else
 				{
-					spawner_route_pool[tile.special_flag] = Route(tile_map, { x, y });
+					spwaner_route_pool[tile.special_flag] = Route(tile_map, { x, y });
 				}
 			}
 		}
 	}
+
 };
 
 

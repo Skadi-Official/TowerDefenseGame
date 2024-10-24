@@ -54,11 +54,9 @@ public:
 				break;
 			}
 
-			if (is_next_dir_exist == false)
+			if (!is_next_dir_exist)
 				break;
 		}
-
-		
 	}
 
 	~Route() = default;
@@ -69,7 +67,7 @@ public:
 	}
 
 private:
-	IdxList idx_list; // 整个路径中每个点的索引
+	IdxList idx_list;
 
 private:
 	bool check_duplicate_idx(const SDL_Point& target_idx)
@@ -77,12 +75,13 @@ private:
 		for (const SDL_Point& idx : idx_list)
 		{
 			if (idx.x == target_idx.x && idx.y == target_idx.y)
-			{
 				return true;
-			}
 		}
+
 		return false;
 	}
+
 };
 
-#endif // ! _ROUTE_H_
+
+#endif // !_ROUTE_H_
