@@ -136,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />
+    <ClInclude Include="coin_manager.h" />
     <ClInclude Include="config_manager.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="enemy_manager.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="timer.h" />
     <ClInclude Include="vector2.h" />
     <ClInclude Include="wave.h" />
+    <ClInclude Include="wave_manager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

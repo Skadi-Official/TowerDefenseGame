@@ -57,7 +57,7 @@ public:
 		{
 			if (is_show_x_anim)
 			{
-				anim_current = velocity.x > 0 ? &anim_right_sketch : &anim_right_sketch;
+				anim_current = velocity.x > 0 ? &anim_right_sketch : &anim_left_sketch;
 			}
 			else
 			{
@@ -68,7 +68,7 @@ public:
 		{
 			if (is_show_x_anim)
 			{
-				anim_current = velocity.x > 0 ? &anim_right : &anim_right;
+				anim_current = velocity.x > 0 ? &anim_right : &anim_left;
 			}
 			else
 			{
@@ -79,7 +79,7 @@ public:
 		anim_current->on_update(delta);
 	}
 
-	void on_renderer(SDL_Renderer* renderer)
+	void on_render(SDL_Renderer* renderer)
 	{
 		static SDL_Rect rect;
 		static SDL_Point point;
@@ -94,7 +94,7 @@ public:
 
 		if (hp < max_hp)	//生命不满时绘制血条
 		{
-			rect.x = (int)(position.x - size_hp_bar.x) / 2;
+			rect.x = (int)(position.x - size_hp_bar.x / 2);
 			rect.y = (int)(position.y - size.y / 2 - size_hp_bar.y - offset_y);
 			rect.w = (int)(size_hp_bar.x * (hp / max_hp));
 			rect.h = (int)size_hp_bar.y;
@@ -127,7 +127,7 @@ public:
 		if (hp <= 0)
 		{
 			hp = 0;
-			is_vaild = false;
+			is_valid = false;
 		}
 
 		is_show_sketch = true;
@@ -154,7 +154,7 @@ public:
 
 	void make_invalid()
 	{
-		is_vaild = true;
+		is_valid = false;
 	}
 
 	double get_hp() const
@@ -172,7 +172,7 @@ public:
 		return size;
 	}
 
-	const Vector2& get_positon() const
+	const Vector2& get_position() const
 	{
 		return position;
 	}
@@ -199,7 +199,7 @@ public:
 
 	bool can_remove() const
 	{
-		return !is_vaild;
+		return !is_valid;
 	}
 
 	double get_route_process() const
@@ -236,7 +236,7 @@ private:
 	Vector2 velocity;
 	Vector2 direction;
 
-	bool is_vaild = true;
+	bool is_valid = true;
 
 	Timer timer_sketch;//受到攻击后的剪影效果
 	bool is_show_sketch = false;

@@ -17,12 +17,12 @@ public:
 	Route(const TileMap& map, const SDL_Point& idx_origin)
 	{
 		size_t width_map = map[0].size();
-		size_t heigth_map = map.size();
+		size_t height_map = map.size();
 		SDL_Point idx_next = idx_origin;
 
 		while (true)
 		{
-			if (idx_next.x >= width_map || idx_next.y >= heigth_map)
+			if (idx_next.x >= width_map || idx_next.y >= height_map)
 				break;
 
 			if (check_duplicate_idx(idx_next))

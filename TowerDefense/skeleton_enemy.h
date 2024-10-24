@@ -7,6 +7,7 @@
 
 class SkeletonEnemy : public Enemy
 {
+public:
 	SkeletonEnemy()
 	{
 		static const ResourcesManager::TexturePool& texture_pool

@@ -97,7 +97,7 @@ public:
 		return idx_home;
 	}
 
-	const SpawnerRoutePool& get_idx_spawner_Pool() const
+	const SpawnerRoutePool& get_idx_spawner_pool() const
 	{
 		return spawner_route_pool;
 	}
@@ -153,7 +153,7 @@ private:
 
 		tile.terrian = (values.size() < 1 || values[0] < 0) ? 0 : values[0];
 		tile.decoration = (values.size() < 2) ? -1 : values[1];
-		tile.direction = (Tile::Direction)((values.size() < 3 || values[2] < 0) ? -1 : values[2]);
+		tile.direction = (Tile::Direction)((values.size() < 3 || values[2] < 0) ? 0 : values[2]);
 		tile.special_flag = (values.size() <= 3) ? -1 : values[3];
 	}
 

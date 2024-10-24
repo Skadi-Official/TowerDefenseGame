@@ -206,7 +206,7 @@ public:
 		parse_tower_template(axeman_template, cJSON_GetObjectItem(json_tower, "axeman"));
 		parse_tower_template(gunner_template, cJSON_GetObjectItem(json_tower, "gunner"));
 
-		parse_enemy_template(slim_template, cJSON_GetObjectItem(json_enemy, "silm"));
+		parse_enemy_template(slim_template, cJSON_GetObjectItem(json_enemy, "slim"));
 		parse_enemy_template(king_slim_template, cJSON_GetObjectItem(json_enemy, "king_slim"));
 		parse_enemy_template(skeleton_template, cJSON_GetObjectItem(json_enemy, "skeleton"));
 		parse_enemy_template(goblin_template, cJSON_GetObjectItem(json_enemy, "goblin"));

@@ -7,6 +7,7 @@
 
 class GoblinEnemy : public Enemy
 {
+public:
 	GoblinEnemy()
 	{
 		static const ResourcesManager::TexturePool& texture_pool

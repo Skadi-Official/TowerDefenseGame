@@ -92,5 +92,11 @@
     <ClInclude Include="home_manager.h">
       <Filter>头文件\manager</Filter>
     </ClInclude>
+    <ClInclude Include="wave_manager.h">
+      <Filter>头文件\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="coin_manager.h">
+      <Filter>头文件\manager</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,6 +7,8 @@
 
 class KingSlimeEnemy : public Enemy
 {
+public:
+
 	KingSlimeEnemy()
 	{
 		static const ResourcesManager::TexturePool& texture_pool
