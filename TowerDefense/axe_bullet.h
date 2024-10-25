@@ -21,10 +21,7 @@ public:
 		size.x = 48, size.y = 48;
 	}
 
-	~AxeBullet()
-	{
-
-	}
+	~AxeBullet() = default;
 
 	void on_collide(Enemy* enemy)override
 	{

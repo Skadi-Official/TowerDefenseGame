@@ -62,7 +62,7 @@ public:
 		point.x = (int)(position.x - 96 / 2);
 		point.y = (int)(position.y - 96 / 2);
 
-		animation.on_render(renderer, point);
+		animation_explode.on_render(renderer, point);
 	}
 
 	void on_collide(Enemy* enemy) override
