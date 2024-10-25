@@ -22,6 +22,9 @@
     <Filter Include="源文件\cJSON">
       <UniqueIdentifier>{f7fc805f-1bd2-433f-a4b1-d33485a1f2b0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\bullet">
+      <UniqueIdentifier>{743128de-2387-4023-ac44-8e7023608f25}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -97,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="coin_manager.h">
       <Filter>头文件\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="bullet.h">
+      <Filter>头文件\bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
