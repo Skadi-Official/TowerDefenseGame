@@ -113,5 +113,11 @@
     <ClInclude Include="shell_bullet.h">
       <Filter>头文件\bullet</Filter>
     </ClInclude>
+    <ClInclude Include="bullet_manager.h">
+      <Filter>头文件\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="bullet_type.h">
+      <Filter>头文件\bullet</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
