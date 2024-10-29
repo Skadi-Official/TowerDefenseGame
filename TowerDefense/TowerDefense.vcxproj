@@ -146,6 +146,7 @@
     <ClInclude Include="enemy.h" />
     <ClInclude Include="enemy_manager.h" />
     <ClInclude Include="enemy_type.h" />
+    <ClInclude Include="facing.h" />
     <ClInclude Include="game_manager.h" />
     <ClInclude Include="goblin_enemy.h" />
     <ClInclude Include="goblin_priest_enemy.h" />
@@ -160,6 +161,8 @@
     <ClInclude Include="slim_enemy.h" />
     <ClInclude Include="tile.h" />
     <ClInclude Include="timer.h" />
+    <ClInclude Include="tower.h" />
+    <ClInclude Include="tower_type.h" />
     <ClInclude Include="vector2.h" />
     <ClInclude Include="wave.h" />
     <ClInclude Include="wave_manager.h" />

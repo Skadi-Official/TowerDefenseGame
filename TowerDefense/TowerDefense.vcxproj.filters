@@ -25,6 +25,9 @@
     <Filter Include="头文件\bullet">
       <UniqueIdentifier>{743128de-2387-4023-ac44-8e7023608f25}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\tower">
+      <UniqueIdentifier>{35b8b18f-a28e-49cb-9e98-c59068e7ed56}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -118,6 +121,15 @@
     </ClInclude>
     <ClInclude Include="bullet_type.h">
       <Filter>头文件\bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="tower.h">
+      <Filter>头文件\tower</Filter>
+    </ClInclude>
+    <ClInclude Include="tower_type.h">
+      <Filter>头文件\tower</Filter>
+    </ClInclude>
+    <ClInclude Include="facing.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
