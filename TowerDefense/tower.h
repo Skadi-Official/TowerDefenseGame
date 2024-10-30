@@ -206,7 +206,7 @@ private:
 		Enemy* target_enemy = find_target_enemy();
 		if (!target_enemy) return;
 
-		can_fire = true;
+		can_fire = false;
 		static ConfigManager* instance = ConfigManager::instance();
 		static const ResourcesManager::SoundPool& sound_pool = ResourcesManager::instance()->get_sound_pool();
 

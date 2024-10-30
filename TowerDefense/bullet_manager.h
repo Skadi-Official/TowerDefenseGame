@@ -31,7 +31,7 @@ public:
 			}), bullet_list.end());
 	}
 
-	void on_renderer(SDL_Renderer* renderer)
+	void on_render(SDL_Renderer* renderer)
 	{
 		for (Bullet* bullet : bullet_list)
 			bullet->on_render(renderer);
