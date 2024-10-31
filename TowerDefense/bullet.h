@@ -43,6 +43,11 @@ public:
 		return position;
 	}
 
+	const double& get_damage() const
+	{
+		return damage;
+	}
+
 	double get_damage_range() const
 	{
 		return damage_range;

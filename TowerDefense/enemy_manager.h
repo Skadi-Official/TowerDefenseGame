@@ -10,6 +10,8 @@
 #include "skeleton_enemy.h"
 #include "goblin_enemy.h"
 #include "goblin_priest_enemy.h"
+#include "bullet_manager.h"
+#include "coin_manager.h"
 
 #include <vector>
 #include <SDL.h>
@@ -160,7 +162,53 @@ private:
 
 	void process_bullet_collision()	//ºÍ×Óµ¯Åö×²
 	{
+		static BulletManager::BulletList& bullet_list
+			= BulletManager::instance()->get_bullet_list();
 
+		for (Enemy* enemy : enemy_list)
+		{
+			if (enemy->can_remove()) continue;
+
+			const Vector2& size_enemy = enemy->get_size();
+			const Vector2& pos_enemy = enemy->get_position();
+
+			for (Bullet* bullet : bullet_list)
+			{
+				if (!bullet->can_collide()) continue;
+
+				const Vector2& pos_bullet = bullet->get_position();
+
+				if (pos_bullet.x >= pos_enemy.x - size_enemy.x / 2
+					&& pos_bullet.y >= pos_enemy.y - size_enemy.y / 2
+					&& pos_bullet.x <= pos_enemy.x + size_enemy.x / 2
+					&& pos_bullet.y <= pos_enemy.y + size_enemy.y / 2)
+				{
+					double damage = bullet->get_damage();
+					double damage_range = bullet->get_damage_range();
+					if (damage_range < 0)
+					{
+						enemy->decrease_hp(damage);
+						if (enemy->can_remove())
+							try_spawn_coin_prop(pos_enemy, enemy->get_reward_ratio());
+					}
+					else
+					{
+						for (Enemy* target_enemy : enemy_list)
+						{
+							const Vector2& pos_target_enemy = target_enemy->get_position();
+							if ((pos_target_enemy - pos_bullet).length() <= damage_range)
+							{
+								target_enemy->decrease_hp(damage);
+								if (target_enemy->can_remove())
+									try_spawn_coin_prop(target_enemy->get_position(), target_enemy->get_reward_ratio());
+							}
+						}
+					}
+
+					bullet->on_collide(enemy);
+				}
+			}
+		}
 	}
 
 	void remove_invalid_enemy()		//ÒÆ³ýµÐÈË
@@ -172,6 +220,13 @@ private:
 				if (deletable) delete enemy;
 				return deletable;
 			}), enemy_list.end());
+	}
+
+	void try_spawn_coin_prop(const Vector2& position, double ratio)
+	{
+		static CoinManager* instance = CoinManager::instance();
+		if ((double)(rand() % 100 / 100 <= ratio))
+			instance->spawn_coin_prop(position);
 	}
 };
 
