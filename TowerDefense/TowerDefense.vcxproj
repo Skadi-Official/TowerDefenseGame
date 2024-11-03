@@ -158,6 +158,7 @@
     <ClInclude Include="king_slim_enemy.h" />
     <ClInclude Include="manager.h" />
     <ClInclude Include="map.h" />
+    <ClInclude Include="panel.h" />
     <ClInclude Include="resources_manager.h" />
     <ClInclude Include="route.h" />
     <ClInclude Include="shell_bullet.h" />

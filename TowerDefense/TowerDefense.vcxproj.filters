@@ -31,6 +31,9 @@
     <Filter Include="头文件\ui">
       <UniqueIdentifier>{6e9c6582-ebcc-4fd1-87e0-754144173749}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\ui\panel">
+      <UniqueIdentifier>{464f9b5f-b08f-4e55-9e34-903a7d0a07f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -151,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="status_bar.h">
       <Filter>头文件\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="panel.h">
+      <Filter>头文件\ui\panel</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
