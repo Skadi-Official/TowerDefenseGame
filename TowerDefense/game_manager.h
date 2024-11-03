@@ -8,7 +8,7 @@
 #include "wave_manager.h"
 #include "tower_manager.h"
 #include "bullet_manager.h"
-
+#include "status_bar.h"
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -87,6 +87,7 @@ protected:
 
 		init_assert(generate_tile_map_texture(), u8"ÍßÆ¬µØÍ¼¼ÓÔØÊ§°Ü");
 
+		status_bar.set_position(15, 15);
 	}
 
 	~GameManager()
@@ -103,6 +104,8 @@ protected:
 private:
 	SDL_Event event;
 	bool is_quit = false;
+
+	StatusBar status_bar;
 
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
@@ -128,6 +131,7 @@ private:
 		static ConfigManager* instance = ConfigManager::instance();
 		if (!instance->is_game_over)
 		{
+			status_bar.on_update(renderer);
 			WaveManager::instance()->on_update(delta);
 			EnemyManager::instance()->on_update(delta);
 			BulletManager::instance()->on_update(delta);
@@ -144,6 +148,11 @@ private:
 		EnemyManager::instance()->on_render(renderer);
 		BulletManager::instance()->on_render(renderer);
 		TowerManager::instance()->on_render(renderer);
+
+		if (!instance->is_game_over)
+		{
+			status_bar.on_render(renderer);
+		}
 	}
 
 	bool generate_tile_map_texture()

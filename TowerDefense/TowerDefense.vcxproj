@@ -163,6 +163,7 @@
     <ClInclude Include="shell_bullet.h" />
     <ClInclude Include="skeleton_enemy.h" />
     <ClInclude Include="slim_enemy.h" />
+    <ClInclude Include="status_bar.h" />
     <ClInclude Include="tile.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="tower.h" />
