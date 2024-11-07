@@ -158,5 +158,11 @@
     <ClInclude Include="panel.h">
       <Filter>头文件\ui\panel</Filter>
     </ClInclude>
+    <ClInclude Include="place_panel.h">
+      <Filter>头文件\ui\panel</Filter>
+    </ClInclude>
+    <ClInclude Include="upgrade_panel.h">
+      <Filter>头文件\ui\panel</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

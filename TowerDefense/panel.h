@@ -195,7 +195,7 @@ protected:
 	};
 
 protected:
-	bool visible = true;
+	bool visible = false;
 	SDL_Point idx_tile_selected;
 	SDL_Point center_pos = { 0 };
 	SDL_Texture* tex_idle = nullptr;
