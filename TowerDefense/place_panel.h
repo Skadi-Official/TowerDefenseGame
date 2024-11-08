@@ -2,6 +2,7 @@
 #define _PLACE_PANEL_H_
 
 #include "panel.h"
+#include "coin_manager.h"
 #include "tower_manager.h"
 #include "resources_manager.h"
 
@@ -19,7 +20,6 @@ public:
 		tex_hovered_top = texture_pool.find(ResID::Tex_UIPlaceHoveredTop)->second;
 		tex_hovered_left = texture_pool.find(ResID::Tex_UIPlaceHoveredLeft)->second;
 		tex_hovered_right = texture_pool.find(ResID::Tex_UIPlaceHoveredRight)->second;
-
 	}
 
 	~PlacePanel() = default;
@@ -28,13 +28,13 @@ public:
 	{
 		static TowerManager* instance = TowerManager::instance();
 
-		val_top = instance->get_place_cost(TowerType::Axeman);
-		val_left = instance->get_place_cost(TowerType::Archer);
-		val_right = instance->get_place_cost(TowerType::Gunner);
+		val_top = (int)instance->get_place_cost(TowerType::Axeman);
+		val_left = (int)instance->get_place_cost(TowerType::Archer);
+		val_right = (int)instance->get_place_cost(TowerType::Gunner);
 
 		reg_top = (int)instance->get_damage_range(TowerType::Axeman) * SIZE_TILE;
 		reg_left = (int)instance->get_damage_range(TowerType::Archer) * SIZE_TILE;
-		reg_top = (int)instance->get_damage_range(TowerType::Gunner) * SIZE_TILE;
+		reg_right = (int)instance->get_damage_range(TowerType::Gunner) * SIZE_TILE;
 
 		Panel::on_update(renderer);
 	}
@@ -56,14 +56,13 @@ public:
 			reg = reg_right;
 			break;
 		}
-			
+
 		if (reg > 0)
 		{
 			filledCircleRGBA(renderer, center_pos.x, center_pos.y, reg,
 				color_region_content.r, color_region_content.g, color_region_content.b, color_region_content.a);
 			aacircleRGBA(renderer, center_pos.x, center_pos.y, reg,
 				color_region_frame.r, color_region_frame.g, color_region_frame.b, color_region_frame.a);
-
 		}
 
 		Panel::on_render(renderer);
@@ -73,7 +72,7 @@ protected:
 	void on_click_top_area() override
 	{
 		CoinManager* instance = CoinManager::instance();
-		
+
 		if (val_top <= instance->get_current_coin_num())
 		{
 			TowerManager::instance()->place_tower(TowerType::Axeman, idx_tile_selected);
@@ -103,14 +102,13 @@ protected:
 		}
 	}
 
-
 private:
-	const SDL_Color color_region_frame = {30, 80, 162, 175};
-	const SDL_Color color_region_content = { 0, 149, 217, 175 };
+	const SDL_Color color_region_frame = { 30, 80, 162, 175 };
+	const SDL_Color color_region_content = { 0, 149, 217, 75 };
 
 private:
 	int reg_top = 0, reg_left = 0, reg_right = 0;
-};
 
+};
 
 #endif // !_PLACE_PANEL_H_

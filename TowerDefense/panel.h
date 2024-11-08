@@ -1,8 +1,8 @@
 #ifndef _PANEL_H_
 #define _PANEL_H_
 
-#include "resources_manager.h"
 #include "tile.h"
+#include "resources_manager.h"
 
 #include <SDL.h>
 #include <string>
@@ -12,8 +12,9 @@ class Panel
 public:
 	Panel()
 	{
-		tex_select_cursor = ResourcesManager::instance()->get_texture_pool().find(ResID::Tex_UISelectCursor)->second;\
+		tex_select_cursor = ResourcesManager::instance()->get_texture_pool().find(ResID::Tex_UISelectCursor)->second;
 	}
+
 	~Panel()
 	{
 		SDL_DestroyTexture(tex_text_background);
@@ -43,7 +44,7 @@ public:
 		{
 		case SDL_MOUSEMOTION:
 		{
-			SDL_Point pos_cursor = { event.motion.x, event.motion.y };		//获得鼠标当前位置
+			SDL_Point pos_cursor = { event.motion.x, event.motion.y };
 			SDL_Rect rect_target = { 0, 0, size_button, size_button };
 
 			rect_target.x = center_pos.x - width / 2 + offset_top.x;
@@ -69,9 +70,10 @@ public:
 				hovered_target = HoveredTarget::Right;
 				return;
 			}
+
 			hovered_target = HoveredTarget::None;
 		}
-			break;
+		break;
 		case SDL_MOUSEBUTTONUP:
 		{
 			switch (hovered_target)
@@ -89,7 +91,7 @@ public:
 
 			visible = false;
 		}
-			break;
+		break;
 		default:
 			break;
 		}
@@ -98,10 +100,10 @@ public:
 	virtual void on_update(SDL_Renderer* renderer)
 	{
 		static TTF_Font* font = ResourcesManager::instance()->get_font_pool().find(ResID::Font_Main)->second;
-		
+
 		if (hovered_target == HoveredTarget::None)
 			return;
-		
+
 		int val = 0;
 		switch (hovered_target)
 		{
@@ -124,7 +126,7 @@ public:
 		std::string str_val = val < 0 ? "MAX" : std::to_string(val);
 		SDL_Surface* suf_text_background = TTF_RenderText_Blended(font, str_val.c_str(), color_text_background);
 		SDL_Surface* suf_text_foreground = TTF_RenderText_Blended(font, str_val.c_str(), color_text_foreground);
-		
+
 		width_text = suf_text_background->w, height_text = suf_text_background->h;
 		tex_text_background = SDL_CreateTextureFromSurface(renderer, suf_text_background);
 		tex_text_foreground = SDL_CreateTextureFromSurface(renderer, suf_text_foreground);
@@ -141,7 +143,7 @@ public:
 		{
 			center_pos.x - SIZE_TILE / 2,
 			center_pos.y - SIZE_TILE / 2,
-			SIZE_TILE, SIZE_TILE,
+			SIZE_TILE, SIZE_TILE
 		};
 		SDL_RenderCopy(renderer, tex_select_cursor, nullptr, &rect_dst_cursor);
 
@@ -168,6 +170,7 @@ public:
 			tex_panel = tex_hovered_right;
 			break;
 		}
+
 		SDL_RenderCopy(renderer, tex_panel, nullptr, &rect_dst_panel);
 
 		if (hovered_target == HoveredTarget::None)
@@ -207,7 +210,6 @@ protected:
 	HoveredTarget hovered_target = HoveredTarget::None;
 
 protected:
-	// 必须子类重写否则子类无法实例化
 	virtual void on_click_top_area() = 0;
 	virtual void on_click_left_area() = 0;
 	virtual void on_click_right_area() = 0;
@@ -226,7 +228,5 @@ private:
 	SDL_Texture* tex_text_background = nullptr;
 	SDL_Texture* tex_text_foreground = nullptr;
 };
-
-
 
 #endif // !_PANEL_H_

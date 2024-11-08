@@ -12,6 +12,7 @@
 #include "panel.h"
 #include "upgrade_panel.h"
 #include "place_panel.h"
+#include "coin_manager.h"
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -157,7 +158,7 @@ private:
 				{
 					place_panel->set_idx_tile(idx_tile_selected);
 					place_panel->set_center_pos(pos_center);
-					upgrade_panel->show();
+					place_panel->show();
 				}
 			}
 			break;
